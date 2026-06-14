@@ -1,0 +1,21 @@
+# Maven
+*/target/
+**/target/
+*.jar
+*.class
+
+# IntelliJ
+**/.idea/
+**/*.iml
+*.iws
+
+# Environment / secrets
+**/application-prod.yml
+**/.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
