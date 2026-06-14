@@ -2,11 +2,13 @@ package com.swiggy.user.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 
+@Slf4j
 @Component
 public class JwtUtil {
 
@@ -21,6 +23,7 @@ public class JwtUtil {
     }
 
     public String generateToken(String email, String role, Long userId) {
+        log.debug("Generating JWT token for email: {}, role: {}", email, role);
         return Jwts.builder()
                 .setSubject(email)
                 .claim("role", role)
@@ -38,8 +41,13 @@ public class JwtUtil {
     public boolean validateToken(String token) {
         try {
             parseClaims(token);
+            log.debug("JWT token validated successfully");
             return true;
+        } catch (ExpiredJwtException e) {
+            log.warn("JWT token expired: {}", e.getMessage());
+            return false;
         } catch (JwtException | IllegalArgumentException e) {
+            log.warn("Invalid JWT token: {}", e.getMessage());
             return false;
         }
     }

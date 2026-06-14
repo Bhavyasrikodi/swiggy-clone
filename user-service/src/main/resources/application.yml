@@ -35,3 +35,13 @@ app:
   jwt:
     secret: swiggy-super-secret-key-for-jwt-must-be-at-least-256-bits-long
     expiration: 86400000
+
+logging:
+  level:
+    com.swiggy: DEBUG
+    org.springframework.security: INFO
+  file:
+    name: logs/user-service.log
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
