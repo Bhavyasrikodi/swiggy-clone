@@ -1,7 +1,7 @@
 package com.swiggy.user.controller;
 
 import com.swiggy.user.dto.*;
-import com.swiggy.user.service.AuthService;
+import com.swiggy.user.service.IAuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthService authService;
+    private final IAuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(
